@@ -1,0 +1,32 @@
+{
+  "name": "archex",
+  "version": "4.0.0",
+  "description": "Genel botlar için kullanabileceğiniz bir modüldür.",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "events": "^3.3.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.13.2",
+    "node-schedule": "^2.0.0",
+    "parse-ms": "^2.1.0",
+    "quick.db": "^7.1.3"
+  },
+  "keywords": [
+    "economy",
+    "ekonomi",
+    "eco",
+    "database economy",
+    "discord.js",
+    "quick.db",
+    "ms",
+    "parse-ms",
+    "moment",
+    "express"
+  ],
+  "author": "ghostdevelopment",
+  "license": "ISC",
+  "repository": {
+    "url": "https://github.com/zMelihStrqfe/archex-module"
+  }
+}
