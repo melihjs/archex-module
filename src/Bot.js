@@ -2,27 +2,27 @@ const { EventEmitter } = require('events');
 const Discord = require('discord.js');
 
 class Bot extends EventEmitter {
-    constructor(client, { token = '', prefix = '', mobile = false , name = '', type = '', status = '' }) {
+    constructor(client, { options = {} }) {
         super();
 
         if (!client) throw new Error("A client wasn't provided.");
-        if (!token) throw new Error("A token wasn't provided.");
-        if (!prefix) throw new Error("A prefix wasn't provided.");
+        if (!options.token) throw new Error("A token wasn't provided.");
+        if (!options.prefix) throw new Error("A prefix wasn't provided.");
 
         this.client = client;
-        this.token = token;
-        this.prefix = prefix;
+        this.token = options.token;
+        this.prefix = options.prefix;
         this.client.on('ready', async () => {
-            if (mobile == true) {
+            if (options.mobile == true) {
                 Discord.Constants.DefaultOptions.ws.properties.$browser = "Discord Android";
-            } else if (mobile == false) {
-                if (!name) throw new Error("A presence name wasn't provided.");
+            } else if (options.mobile == false) {
+                if (!options.presence.name) throw new Error("A presence name wasn't provided.");
                 this.client.user.setPresence({
                     activity: {
-                        name: name,
-                        type: type || "PLAYING"
+                        name: options.presence.name,
+                        type: options.presence.type || "PLAYING"
                     },
-                    status: status || "online"
+                    status: options.presence.status || "online"
                 })
             }
         });
@@ -40,8 +40,11 @@ class Bot extends EventEmitter {
             if (msg.content.indexOf(prefix) !== 0) return;
             var args = msg.content.slice(prefix.length).trim().split(/ +/g);
             var command = args.shift().toLowerCase();
-            if (command = name) {
-                return msg.channel.send(message)
+            if (command == name) {
+                var Msg = message
+                .replace('{ping}', this.client.ws.ping)
+                .replace('{user}', message.author);
+                return msg.channel.send(Msg);
             }
         });
     }

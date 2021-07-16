@@ -1,6 +1,5 @@
 class Matematik {
   constructor(client, { token = '', sayi = '', sayi2 = '' }) {
-    super();
 
     if (!client) throw new Error("A client wasn't provided.");
     if (!sayi) throw new Error("A number 1 wasn't provided.");

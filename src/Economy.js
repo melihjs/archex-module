@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const EventEmitter = require('events');
+const { EventEmitter } = require('events');
 const data = require("quick.db");
 const ms = require('parse-ms');
 const { utc } = require('moment');
