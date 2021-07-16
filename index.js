@@ -1,7 +1,4 @@
 const file = files => require(`./src/${files}`);
-const { Client } = require('discord.js');
-const client = new Client();
-require('discord-buttons')(client);
 
 module.exports = {
     Economy: file('Economy'),
@@ -9,5 +6,8 @@ module.exports = {
     DiscordEmbed: file('DiscordEmbed'),
     Matematik: file('Matematik'),
     Bot: file('Bot'),
+    AutoRole: file('AutoRole'),
+    MessagePage: file('MessagePage'),
+    Music: file('Music'),
     version: require('./package.json').version
 };

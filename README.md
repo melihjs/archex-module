@@ -1,15 +1,15 @@
-# ghost-eco
+# archex
 
 ## Yükleme
    ```npm
-   npm i ghost-eco
+   npm i archex
    ```
 
-## Örnek Kod:
+## Ekonomi Kod:
 
    ```js
     const { Client } = require('discord.js');
-    const { Economy } = require('ghost-eco');
+    const { Economy } = require('archex');
     const client = new Client();
     const eco = new Economy();
     client.eco = eco;
@@ -38,8 +38,102 @@
     }
     });
 
-    client.login(process.env.token);
+    client.login('token');
    ```
+
+## Giveaway Kod:
+   
+   ```js
+   const { Client } = require('discord.js');
+const { GiveawayManager } = require('ghost-eco');
+const client = new Client();
+const ms = require('ms');
+client.giveaways = new GiveawayManager(client, {
+  mongoURL: 'mongoURL',
+  emoji: '🎉',
+  embedColor: 'BLURPLE'
+});
+
+client.on('ready', async () => {
+  console.log('ready');
+});
+
+client.on('message', async (message) => {
+  if (!message.guild) return;
+  var args = message.content.split(" ");
+  if (args[0] == "!gw") {
+    var süre = args[1];
+    var winnerCount = args[2];
+    var ödül = args.slice(3).join(" ");
+    client.giveaways.start(message, { 
+      prize: ödül,
+      time: ms(süre),
+      winners: winnerCount
+    });
+  }
+});
+
+client.login('token');
+```
+
+## Bot Kod:
+
+```js
+const { Client, MessageEmbed } = require('discord.js');
+const { Bot } = require('ghost-eco');
+const client = new Client();
+const bot = new Bot(client, { 
+  token: process.env.token,
+  prefix: '!',
+  mobile: true
+});
+
+bot.onReady('Bot ready!');
+
+bot.onMessage({
+  name: "deneme",
+  message: "deneme"
+});
+
+bot.onJoinMember({
+  channel: "864515384752340992",
+  message: "{userName} adlı kullanıcı katıldı, hoş geldin!"
+});
+
+bot.onJoinBot({
+  channel: "864515384752340992",
+  message: "{botName} adlı bot OAuth2 metoduyla katıldı!"
+});
+```
+
+## Music kod:
+
+```js
+const { Client } = require('discord.js');
+const { Music } = require('archex');
+const client = new Client();
+client._music = new Music(client, 'mongoURL');
+require('discord-buttons')(client);
+
+client.on('ready', async () => console.log('ready'));
+
+client.on('message', async (message) => {
+  var args = message.content.split(" ");
+  if (args[0] == "!pl") {
+    var msc = args.slice(1).join(" ");
+    if (!msc) return message.channel.send("Music!");
+    client._music.oynat(message, msc);
+  } else if (args[0] == "!!kur") {
+    client._music.kur(message);
+  };
+});
+
+client.on('clickButton', async (button) => {
+  client._music.buton(button);
+});
+
+client.login("token");
+```
 
 ## Telif Hakkı:
 
