@@ -1,9 +1,10 @@
 {
   "name": "archex",
-  "version": "6.5.5",
+  "version": "8.0.0",
   "description": "Genel botlar için kullanabileceğiniz bir modüldür.",
   "main": "index.js",
   "dependencies": {
+    "@aero/centra": "^1.0.6",
     "@discordjs/opus": "^0.5.3",
     "discord-buttons": "^4.0.0",
     "discord.js": "^12.5.3",
@@ -27,7 +28,12 @@
     "ms",
     "parse-ms",
     "moment",
-    "express"
+    "express",
+    "music",
+    "müzik",
+    "music-buttons",
+    "müzik-buttons",
+    "butonlu-müzik"
   ],
   "author": "ghostdevelopment",
   "license": "ISC",

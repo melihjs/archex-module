@@ -5,6 +5,39 @@
    npm i archex
    ```
 
+## Dropwn Roles Kod:
+
+  ```js
+  const { Client } = require('discord.js');
+const { Bot } = require('archex');
+const client = new Client();
+const bot = new Bot(client, {
+    token: "token",
+    prefix: "prefix",
+    mobile: true
+});
+require('discord-buttons')(client);
+
+bot.onReady('Bot ready!');
+
+bot.selectRoleMenu({
+    commandName: "kullanılacak komut ismi", // use with prefix!
+    message: "mesaj",
+    options: {
+        label: "label",
+        value: "rol id",
+        description: "açıklama",
+        emoji: "emoji"
+    },
+    menu: {
+        placeholder: "boşluk",
+        id: "id",
+        minValues: "sayı",
+        maxValues: "sayı"
+    }
+});
+  ```
+
 ## Ekonomi Kod:
 
    ```js
