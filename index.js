@@ -1,4 +1,4 @@
-const file = files => require(`./src/${files}`);
+const file = files => require(`./src/struct/${files}`);
 
 module.exports = {
   Economy: file('Economy'),
